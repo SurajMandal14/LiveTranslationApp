@@ -970,7 +970,73 @@
           Spanish: "es",
           German: "de",
           Japanese: "ja",
-          Chinese: "zh-CN",
+          Chinese: "zh",
+        },
+      };
+
+      // Common phrases dictionary for fallback translations
+      const commonPhrases = {
+        "en-hi": {
+          hello: "नमस्ते",
+          hi: "नमस्ते",
+          hey: "नमस्ते",
+          "how are you": "आप कैसे हैं?",
+          "how are you doing": "आप कैसे हैं?",
+          "thank you": "धन्यवाद",
+          thanks: "धन्यवाद",
+          welcome: "स्वागत है",
+          "good morning": "सुप्रभात",
+          "good afternoon": "शुभ दोपहर",
+          "good evening": "शुभ संध्या",
+          "good night": "शुभ रात्रि",
+          goodbye: "अलविदा",
+          bye: "अलविदा",
+          yes: "हां",
+          no: "नहीं",
+          maybe: "शायद",
+          please: "कृपया",
+          sorry: "माफ़ कीजिये",
+          "excuse me": "क्षमा कीजिये",
+          "i love you": "मैं आपसे प्यार करता हूं",
+          "i am from": "मैं से हूं",
+          "my name is": "मेरा नाम है",
+          "what is your name": "आपका नाम क्या है?",
+          "nice to meet you": "आपसे मिलकर अच्छा लगा",
+          "how much": "कितना",
+          "where is": "कहां है",
+          help: "मदद",
+          food: "खाना",
+          water: "पानी",
+          today: "आज",
+          tomorrow: "कल",
+          yesterday: "कल (बीता हुआ)",
+        },
+        "en-te": {
+          hello: "హలో",
+          hi: "హాయ్",
+          hey: "హే",
+          "how are you": "మీరు ఎలా ఉన్నారు?",
+          "how are you doing": "మీరు ఎలా ఉన్నారు?",
+          "thank you": "ధన్యవాదాలు",
+          thanks: "థాంక్స్",
+          welcome: "స్వాగతం",
+          "good morning": "శుభోదయం",
+          "good afternoon": "శుభ మధ్యాహ్నం",
+          "good evening": "శుభ సాయంత్రం",
+          "good night": "శుభరాత్రి",
+          goodbye: "వీడ్కోలు",
+          bye: "బై",
+          yes: "అవును",
+          no: "కాదు",
+          maybe: "బహుశా",
+          please: "దయచేసి",
+          sorry: "క్షమించండి",
+          "excuse me": "నన్ను క్షమించండి",
+          "i love you": "నేను నిన్ను ప్రేమిస్తున్నాను",
+          "i am from": "నేను నుండి",
+          "my name is": "నా పేరు",
+          "what is your name": "మీ పేరు ఏమిటి?",
+          "nice to meet you": "మిమ్మల్ని కలవడం చాలా సంతోషంగా ఉంది",
         },
       };
 
@@ -1365,78 +1431,98 @@
           const lowerText = text.toLowerCase();
 
           if (targetLang === "Hindi") {
-            if (
-              lowerText.includes("hello") ||
-              lowerText.includes("hi") ||
-              lowerText.includes("hey")
-            ) {
-              translatedText = "नमस्ते";
-            } else if (lowerText.includes("how are you")) {
-              translatedText = "आप कैसे हैं?";
-            } else if (
-              lowerText.includes("eat") ||
-              lowerText.includes("ate") ||
-              lowerText.includes("food")
-            ) {
-              translatedText = "क्या आपने खाना खाया?";
-            } else if (lowerText.includes("name")) {
-              translatedText = "आपका नाम क्या है?";
-            } else if (lowerText.includes("thank")) {
-              translatedText = "धन्यवाद";
-            } else if (lowerText.includes("welcome")) {
-              translatedText = "आपका स्वागत है";
-            } else if (lowerText.includes("good morning")) {
-              translatedText = "सुप्रभात";
-            } else if (lowerText.includes("good night")) {
-              translatedText = "शुभ रात्रि";
-            } else if (lowerText.includes("sorry")) {
-              translatedText = "माफ़ कीजिये";
-            } else if (lowerText.includes("yes")) {
-              translatedText = "हां";
-            } else if (lowerText.includes("no")) {
-              translatedText = "नहीं";
-            } else if (lowerText.includes("water")) {
-              translatedText = "पानी";
-            } else if (lowerText.includes("work")) {
-              translatedText = "काम";
-            } else if (lowerText.includes("today")) {
-              translatedText = "आज";
-            } else if (lowerText.includes("tomorrow")) {
-              translatedText = "कल";
-            } else if (lowerText.includes("yesterday")) {
-              translatedText = "कल";
-            } else {
-              // Use the text hash to create a slightly randomized translation for unknown phrases
-              const inputHash = hashString(text);
-              const variants = [
-                "मुझे समझ नहीं आया, कृपया फिर से बोलें",
-                `${text} का हिंदी अनुवाद`,
-                `यह हिंदी में अनुवादित वाक्य है`,
-                `क्या आप ${inputHash % 10} बजे मिल सकते हैं?`,
-                `मैं ${sourceLang} से ${targetLang} में अनुवाद कर रहा हूं`,
-              ];
-              translatedText = variants[inputHash % variants.length];
+            // Direct translation using our dictionary
+            if (sourceCode === "en") {
+              // Check if we have this phrase in our dictionary
+              for (let phrase in commonPhrases["en-hi"]) {
+                if (lowerText.includes(phrase)) {
+                  translatedText = commonPhrases["en-hi"][phrase];
+                  break;
+                }
+              }
+            }
+
+            // If no match found in dictionary, use simple detection
+            if (!translatedText) {
+              if (
+                lowerText.includes("hello") ||
+                lowerText.includes("hi") ||
+                lowerText.includes("hey")
+              ) {
+                translatedText = "नमस्ते";
+              } else if (lowerText.includes("how are you")) {
+                translatedText = "आप कैसे हैं?";
+              } else if (
+                lowerText.includes("eat") ||
+                lowerText.includes("ate") ||
+                lowerText.includes("food")
+              ) {
+                translatedText = "क्या आपने खाना खाया?";
+              } else if (lowerText.includes("name")) {
+                translatedText = "आपका नाम क्या है?";
+              } else if (lowerText.includes("thank")) {
+                translatedText = "धन्यवाद";
+              } else if (lowerText.includes("welcome")) {
+                translatedText = "आपका स्वागत है";
+              } else if (lowerText.includes("good morning")) {
+                translatedText = "सुप्रभात";
+              } else if (lowerText.includes("good night")) {
+                translatedText = "शुभ रात्रि";
+              } else if (lowerText.includes("sorry")) {
+                translatedText = "माफ़ कीजिये";
+              } else if (lowerText.includes("yes")) {
+                translatedText = "हां";
+              } else if (lowerText.includes("no")) {
+                translatedText = "नहीं";
+              } else if (lowerText.includes("water")) {
+                translatedText = "पानी";
+              } else if (lowerText.includes("work")) {
+                translatedText = "काम";
+              } else if (lowerText.includes("today")) {
+                translatedText = "आज";
+              } else if (lowerText.includes("tomorrow")) {
+                translatedText = "कल";
+              } else if (lowerText.includes("yesterday")) {
+                translatedText = "कल";
+              } else {
+                // Create a simple translation message
+                translatedText = `${text} (Hindi translation)`;
+              }
             }
           } else if (targetLang === "Telugu") {
-            if (
-              lowerText.includes("hello") ||
-              lowerText.includes("hi") ||
-              lowerText.includes("hey")
-            ) {
-              translatedText = "నమస్కారం";
-            } else if (lowerText.includes("how are you")) {
-              translatedText = "మీరు ఎలా ఉన్నారు?";
-            } else if (
-              lowerText.includes("eat") ||
-              lowerText.includes("ate") ||
-              lowerText.includes("food")
-            ) {
-              translatedText = "మీరు తిన్నారా?";
-            } else if (lowerText.includes("name")) {
-              translatedText = "మీ పేరు ఏమిటి?";
-            } else {
-              // Fallback for Telugu
-              translatedText = `తెలుగులో: ${text}`;
+            // Direct translation using our dictionary
+            if (sourceCode === "en") {
+              // Check if we have this phrase in our dictionary
+              for (let phrase in commonPhrases["en-te"]) {
+                if (lowerText.includes(phrase)) {
+                  translatedText = commonPhrases["en-te"][phrase];
+                  break;
+                }
+              }
+            }
+
+            // If no match found in dictionary, use simple detection
+            if (!translatedText) {
+              if (
+                lowerText.includes("hello") ||
+                lowerText.includes("hi") ||
+                lowerText.includes("hey")
+              ) {
+                translatedText = "హలో";
+              } else if (lowerText.includes("how are you")) {
+                translatedText = "మీరు ఎలా ఉన్నారు?";
+              } else if (
+                lowerText.includes("eat") ||
+                lowerText.includes("ate") ||
+                lowerText.includes("food")
+              ) {
+                translatedText = "మీరు తిన్నారా?";
+              } else if (lowerText.includes("name")) {
+                translatedText = "మీ పేరు ఏమిటి?";
+              } else {
+                // Create a simple translation message
+                translatedText = `${text} (Telugu translation)`;
+              }
             }
           } else if (targetLang === "English") {
             if (
@@ -1454,8 +1540,8 @@
               translatedText = text;
             }
           } else {
-            // For other languages, create a placeholder that changes based on the input
-            translatedText = `[${targetLang} translation of: ${text}]`;
+            // For other languages, create a simple placeholder
+            translatedText = `${text} (${targetLang} translation)`;
           }
 
           // Update UI with translation
