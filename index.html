@@ -240,6 +240,54 @@
         color: #4285f4;
         margin-bottom: 10px;
       }
+      .nav-menu {
+        display: flex;
+        justify-content: center;
+        padding: 10px 0;
+        margin-bottom: 15px;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+      .nav-link {
+        color: #4285f4;
+        text-decoration: none;
+        padding: 5px 10px;
+        border-radius: 15px;
+        transition: all 0.2s ease;
+      }
+      .nav-link:hover {
+        background-color: #e8f0fe;
+      }
+      .nav-link.active {
+        font-weight: 600;
+        background-color: #e8f0fe;
+      }
+      .about-section,
+      .privacy-section,
+      .contact-section {
+        border: 1px solid #e0e0e0;
+        border-radius: 15px;
+        padding: 20px;
+        background-color: white;
+        margin: 15px 0;
+        display: none;
+      }
+      .visible-section {
+        display: block;
+      }
+      .app-section {
+        display: block;
+      }
+      .content-heading {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: #4285f4;
+      }
+      .content-text {
+        margin-bottom: 15px;
+        line-height: 1.6;
+      }
     </style>
   </head>
   <body class="py-6">
@@ -251,222 +299,454 @@
         VoiceBridge
       </h1>
 
-      <!-- Google AdSense Ad Unit -->
-      <div class="mb-8 text-center">
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6124600354172819"
-          crossorigin="anonymous"
-        ></script>
-        <!-- Example ad -->
-        <ins
-          class="adsbygoogle"
-          style="display: block"
-          data-ad-client="ca-pub-6124600354172819"
-          data-ad-slot="9834598735"
-          data-ad-format="auto"
-          data-full-width-responsive="true"
-        ></ins>
-        <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
+      <!-- Navigation Menu -->
+      <div class="nav-menu">
+        <a href="#app" class="nav-link active" data-section="app-section"
+          >Translator</a
+        >
+        <a href="#about" class="nav-link" data-section="about-section">About</a>
+        <a href="#privacy" class="nav-link" data-section="privacy-section"
+          >Privacy Policy</a
+        >
+        <a href="#contact" class="nav-link" data-section="contact-section"
+          >Contact</a
+        >
       </div>
 
-      <!-- Language Selector -->
-      <div class="flex justify-center items-center mb-6 md:mb-8 gap-2 md:gap-4">
-        <div class="language-selector" id="sourceLanguage">Telugu</div>
-        <div class="translate-arrow">
-          <i class="fas fa-arrow-right"></i>
+      <!-- Main App Section -->
+      <div id="app-section" class="app-section visible-section">
+        <!-- Google AdSense Ad Unit -->
+        <div class="mb-8 text-center">
+          <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6124600354172819"
+            crossorigin="anonymous"
+          ></script>
+          <!-- Example ad -->
+          <ins
+            class="adsbygoogle"
+            style="display: block"
+            data-ad-client="ca-pub-6124600354172819"
+            data-ad-slot="9834598735"
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+          ></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
         </div>
-        <div class="language-selector" id="targetLanguage">Hindi</div>
-      </div>
 
-      <!-- Microphone Button -->
-      <div class="flex justify-center mb-4">
-        <div class="mic-button" id="micButton">
-          <svg
-            class="mic-icon"
-            fill="white"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"
-            />
-            <path
-              d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"
-            />
-          </svg>
+        <!-- Language Selector -->
+        <div
+          class="flex justify-center items-center mb-6 md:mb-8 gap-2 md:gap-4"
+        >
+          <div class="language-selector" id="sourceLanguage">Telugu</div>
+          <div class="translate-arrow">
+            <i class="fas fa-arrow-right"></i>
+          </div>
+          <div class="language-selector" id="targetLanguage">Hindi</div>
         </div>
-      </div>
 
-      <!-- Push-to-talk hint -->
-      <p class="push-to-talk-hint mb-4">Press and hold to speak</p>
-
-      <!-- Live Transcription Box -->
-      <div class="transcript-box mb-4" id="transcriptionBox">
-        <div id="recordingIndicator" class="hidden items-center mb-2">
-          <span class="recording-dot pulse-animation"></span>
-          <span class="text-sm text-red-600">Recording...</span>
+        <!-- Microphone Button -->
+        <div class="flex justify-center mb-4">
+          <div class="mic-button" id="micButton">
+            <svg
+              class="mic-icon"
+              fill="white"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"
+              />
+              <path
+                d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"
+              />
+            </svg>
+          </div>
         </div>
-        <div id="translatingIndicator" class="hidden items-center mb-2">
-          <span class="loading-spinner"></span>
-          <span class="text-sm text-blue-600">Translating...</span>
+
+        <!-- Push-to-talk hint -->
+        <p class="push-to-talk-hint mb-4">Press and hold to speak</p>
+
+        <!-- Live Transcription Box -->
+        <div class="transcript-box mb-4" id="transcriptionBox">
+          <div id="recordingIndicator" class="hidden items-center mb-2">
+            <span class="recording-dot pulse-animation"></span>
+            <span class="text-sm text-red-600">Recording...</span>
+          </div>
+          <div id="translatingIndicator" class="hidden items-center mb-2">
+            <span class="loading-spinner"></span>
+            <span class="text-sm text-blue-600">Translating...</span>
+          </div>
+          <p id="transcriptionText" class="text-gray-700">
+            Press and hold the microphone button to speak
+          </p>
+          <p
+            id="translationText"
+            class="text-gray-900 font-medium mt-4 hidden"
+          ></p>
+          <p id="errorText" class="error-message hidden"></p>
         </div>
-        <p id="transcriptionText" class="text-gray-700">
-          Press and hold the microphone button to speak
-        </p>
-        <p
-          id="translationText"
-          class="text-gray-900 font-medium mt-4 hidden"
-        ></p>
-        <p id="errorText" class="error-message hidden"></p>
-      </div>
 
-      <!-- Play Translation Button -->
-      <div class="flex justify-center mb-6">
-        <button class="play-button disabled" id="playButton" disabled>
-          <i class="fas fa-volume-up"></i>
-          Play Translation
-        </button>
-      </div>
-
-      <!-- Translation History -->
-      <div class="mt-8">
-        <div class="flex justify-between items-center mb-4">
-          <h2 class="text-xl font-semibold text-gray-700">
-            Recent Translations
-          </h2>
-          <button class="view-history-button" id="viewHistoryButton">
-            <i class="fas fa-history"></i>
-            View All History
+        <!-- Play Translation Button -->
+        <div class="flex justify-center mb-6">
+          <button class="play-button disabled" id="playButton" disabled>
+            <i class="fas fa-volume-up"></i>
+            Play Translation
           </button>
         </div>
-        <div id="historyContainer">
-          <!-- History items will be added here -->
-        </div>
-      </div>
 
-      <!-- Language Selection Modal -->
-      <div
-        id="languageModal"
-        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50"
-      >
-        <div
-          class="bg-white rounded-lg p-4 md:p-6 w-72 md:w-80 max-h-96 overflow-y-auto"
-        >
-          <h3 class="text-lg font-semibold mb-4">Select Language</h3>
-          <div class="space-y-2 mb-4" id="languageOptionsList">
-            <div
-              class="p-2 hover:bg-gray-100 rounded cursor-pointer language-option"
-            >
-              Telugu
-            </div>
-            <div
-              class="p-2 hover:bg-gray-100 rounded cursor-pointer language-option"
-            >
-              Hindi
-            </div>
-            <div
-              class="p-2 hover:bg-gray-100 rounded cursor-pointer language-option"
-            >
-              English
-            </div>
-            <div
-              class="p-2 hover:bg-gray-100 rounded cursor-pointer language-option"
-            >
-              Tamil
-            </div>
-            <div
-              class="p-2 hover:bg-gray-100 rounded cursor-pointer language-option"
-            >
-              Kannada
-            </div>
-            <div
-              class="p-2 hover:bg-gray-100 rounded cursor-pointer language-option"
-            >
-              French
-            </div>
-            <div
-              class="p-2 hover:bg-gray-100 rounded cursor-pointer language-option"
-            >
-              Spanish
-            </div>
-            <div
-              class="p-2 hover:bg-gray-100 rounded cursor-pointer language-option"
-            >
-              German
-            </div>
-            <div
-              class="p-2 hover:bg-gray-100 rounded cursor-pointer language-option"
-            >
-              Japanese
-            </div>
-            <div
-              class="p-2 hover:bg-gray-100 rounded cursor-pointer language-option"
-            >
-              Chinese
-            </div>
-          </div>
-          <div class="flex justify-end">
-            <button id="closeModal" class="px-4 py-2 bg-gray-200 rounded">
-              Cancel
+        <!-- Translation History -->
+        <div class="mt-8">
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-semibold text-gray-700">
+              Recent Translations
+            </h2>
+            <button class="view-history-button" id="viewHistoryButton">
+              <i class="fas fa-history"></i>
+              View All History
             </button>
           </div>
+          <div id="historyContainer">
+            <!-- History items will be added here -->
+          </div>
         </div>
-      </div>
 
-      <!-- History Modal -->
-      <div
-        id="historyModal"
-        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50"
-      >
+        <!-- Language Selection Modal -->
         <div
-          class="bg-white rounded-lg p-4 md:p-6 w-11/12 md:w-3/4 lg:w-2/3 history-modal"
+          id="languageModal"
+          class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50"
         >
-          <div class="flex justify-between items-center mb-4">
-            <h3 class="text-lg font-semibold">Translation History</h3>
-            <div>
-              <button id="clearHistoryButton" class="clear-history-button">
-                <i class="fas fa-trash-alt"></i> Clear All
-              </button>
-              <button
-                id="closeHistoryModal"
-                class="ml-2 px-4 py-2 bg-gray-200 rounded"
+          <div
+            class="bg-white rounded-lg p-4 md:p-6 w-72 md:w-80 max-h-96 overflow-y-auto"
+          >
+            <h3 class="text-lg font-semibold mb-4">Select Language</h3>
+            <div class="space-y-2 mb-4" id="languageOptionsList">
+              <div
+                class="p-2 hover:bg-gray-100 rounded cursor-pointer language-option"
               >
-                Close
+                Telugu
+              </div>
+              <div
+                class="p-2 hover:bg-gray-100 rounded cursor-pointer language-option"
+              >
+                Hindi
+              </div>
+              <div
+                class="p-2 hover:bg-gray-100 rounded cursor-pointer language-option"
+              >
+                English
+              </div>
+              <div
+                class="p-2 hover:bg-gray-100 rounded cursor-pointer language-option"
+              >
+                Tamil
+              </div>
+              <div
+                class="p-2 hover:bg-gray-100 rounded cursor-pointer language-option"
+              >
+                Kannada
+              </div>
+              <div
+                class="p-2 hover:bg-gray-100 rounded cursor-pointer language-option"
+              >
+                French
+              </div>
+              <div
+                class="p-2 hover:bg-gray-100 rounded cursor-pointer language-option"
+              >
+                Spanish
+              </div>
+              <div
+                class="p-2 hover:bg-gray-100 rounded cursor-pointer language-option"
+              >
+                German
+              </div>
+              <div
+                class="p-2 hover:bg-gray-100 rounded cursor-pointer language-option"
+              >
+                Japanese
+              </div>
+              <div
+                class="p-2 hover:bg-gray-100 rounded cursor-pointer language-option"
+              >
+                Chinese
+              </div>
+            </div>
+            <div class="flex justify-end">
+              <button id="closeModal" class="px-4 py-2 bg-gray-200 rounded">
+                Cancel
               </button>
             </div>
           </div>
-          <div id="fullHistoryContainer">
-            <!-- All history items will be loaded here -->
+        </div>
+
+        <!-- History Modal -->
+        <div
+          id="historyModal"
+          class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50"
+        >
+          <div
+            class="bg-white rounded-lg p-4 md:p-6 w-11/12 md:w-3/4 lg:w-2/3 history-modal"
+          >
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-lg font-semibold">Translation History</h3>
+              <div>
+                <button id="clearHistoryButton" class="clear-history-button">
+                  <i class="fas fa-trash-alt"></i> Clear All
+                </button>
+                <button
+                  id="closeHistoryModal"
+                  class="ml-2 px-4 py-2 bg-gray-200 rounded"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+            <div id="fullHistoryContainer">
+              <!-- All history items will be loaded here -->
+            </div>
           </div>
+        </div>
+
+        <!-- Google AdSense Ad Unit (Bottom) -->
+        <div class="mt-10 mb-6 text-center">
+          <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6124600354172819"
+            crossorigin="anonymous"
+          ></script>
+          <!-- Example ad -->
+          <ins
+            class="adsbygoogle"
+            style="display: block"
+            data-ad-client="ca-pub-6124600354172819"
+            data-ad-slot="9834598735"
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+          ></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
         </div>
       </div>
 
-      <!-- Google AdSense Ad Unit (Bottom) -->
-      <div class="mt-10 mb-6 text-center">
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6124600354172819"
-          crossorigin="anonymous"
-        ></script>
-        <!-- Example ad -->
-        <ins
-          class="adsbygoogle"
-          style="display: block"
-          data-ad-client="ca-pub-6124600354172819"
-          data-ad-slot="9834598735"
-          data-ad-format="auto"
-          data-full-width-responsive="true"
-        ></ins>
-        <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
+      <!-- About Section -->
+      <div id="about-section" class="about-section">
+        <h2 class="content-heading">About VoiceBridge</h2>
+        <p class="content-text">
+          VoiceBridge is a real-time voice translation tool designed to break
+          down language barriers and facilitate communication across different
+          languages. Our mission is to make global communication seamless and
+          accessible to everyone.
+        </p>
+        <p class="content-text">
+          With support for 10 languages including Telugu, Hindi, English, Tamil,
+          Kannada, French, Spanish, German, Japanese, and Chinese, VoiceBridge
+          helps you connect with people around the world without language
+          limitations.
+        </p>
+        <h3 class="text-xl font-semibold mb-3 mt-6">How It Works</h3>
+        <ol class="list-decimal pl-5 mb-6 space-y-2">
+          <li>
+            Select your source and target languages from the dropdown menus
+          </li>
+          <li>
+            Press and hold the microphone button to speak in your language
+          </li>
+          <li>Release the button when you're done speaking</li>
+          <li>
+            VoiceBridge will automatically transcribe and translate your speech
+          </li>
+          <li>
+            Press the "Play Translation" button to hear the translation spoken
+            aloud
+          </li>
+          <li>
+            All your translations are saved in history for future reference
+          </li>
+        </ol>
+        <h3 class="text-xl font-semibold mb-3">Common Use Cases</h3>
+        <ul class="list-disc pl-5 mb-6 space-y-2">
+          <li>Travel to foreign countries without language barriers</li>
+          <li>Business meetings with international clients or partners</li>
+          <li>Learning new languages with proper pronunciation</li>
+          <li>
+            Communicating with family members who speak different languages
+          </li>
+          <li>
+            Educational settings for language classes and cultural exchange
+          </li>
+        </ul>
+      </div>
+
+      <!-- Privacy Policy Section -->
+      <div id="privacy-section" class="privacy-section">
+        <h2 class="content-heading">Privacy Policy</h2>
+        <p class="content-text">Last updated: March 2024</p>
+        <p class="content-text">
+          At VoiceBridge, we take your privacy seriously. This Privacy Policy
+          explains how we collect, use, and protect your information when you
+          use our voice translation service.
+        </p>
+        <h3 class="text-lg font-semibold mb-2 mt-4">Information We Collect</h3>
+        <p class="content-text">
+          When you use VoiceBridge, we may collect the following types of
+          information:
+        </p>
+        <ul class="list-disc pl-5 mb-4">
+          <li>
+            Audio recordings of your voice while using the translation feature
+          </li>
+          <li>Text transcriptions and translations of your speech</li>
+          <li>Language preferences</li>
+          <li>Translation history (stored locally on your device)</li>
+          <li>Usage data such as features used and time spent on the app</li>
+        </ul>
+        <h3 class="text-lg font-semibold mb-2">How We Use Your Information</h3>
+        <p class="content-text">We use the information we collect to:</p>
+        <ul class="list-disc pl-5 mb-4">
+          <li>Provide and maintain our translation service</li>
+          <li>Improve and optimize the user experience</li>
+          <li>Analyze usage patterns to enhance our features</li>
+          <li>Store your translation history for your convenience</li>
+        </ul>
+        <h3 class="text-lg font-semibold mb-2">Data Storage</h3>
+        <p class="content-text">
+          Your translation history is stored locally in your browser's local
+          storage. This data remains on your device and is not transmitted to
+          our servers. You can clear this data at any time using the "Clear All"
+          button in the history section.
+        </p>
+        <h3 class="text-lg font-semibold mb-2">Third-Party Services</h3>
+        <p class="content-text">We use the following third-party services:</p>
+        <ul class="list-disc pl-5 mb-4">
+          <li>Web Speech API for speech recognition</li>
+          <li>Various translation APIs to process your translations</li>
+          <li>Google AdSense to display advertisements</li>
+        </ul>
+        <h3 class="text-lg font-semibold mb-2">Advertising</h3>
+        <p class="content-text">
+          We use Google AdSense to show advertisements on VoiceBridge. Google
+          AdSense may use cookies and similar technologies to serve ads based on
+          your prior visits to our website or other websites. You can opt out of
+          personalized advertising by visiting
+          <a
+            href="https://www.google.com/settings/ads"
+            class="text-blue-500 hover:underline"
+            target="_blank"
+            >Google Ads Settings</a
+          >.
+        </p>
+        <h3 class="text-lg font-semibold mb-2">Changes to This Policy</h3>
+        <p class="content-text">
+          We may update our Privacy Policy from time to time. We will notify you
+          of any changes by posting the new Privacy Policy on this page.
+        </p>
+        <h3 class="text-lg font-semibold mb-2">Contact Us</h3>
+        <p class="content-text">
+          If you have any questions about this Privacy Policy, please contact us
+          at our email address provided in the Contact section.
+        </p>
+      </div>
+
+      <!-- Contact Section -->
+      <div id="contact-section" class="contact-section">
+        <h2 class="content-heading">Contact Us</h2>
+        <p class="content-text">
+          We value your feedback and are here to address any questions or
+          concerns you may have about VoiceBridge.
+        </p>
+        <div class="mb-6">
+          <h3 class="text-lg font-semibold mb-2">Email</h3>
+          <p class="mb-4">contact@voicebridge-app.com</p>
+
+          <h3 class="text-lg font-semibold mb-2">Social Media</h3>
+          <div class="flex gap-4 mb-4">
+            <a href="#" class="text-blue-600 hover:text-blue-800">
+              <i class="fab fa-twitter fa-lg"></i>
+            </a>
+            <a href="#" class="text-blue-800 hover:text-blue-900">
+              <i class="fab fa-facebook-f fa-lg"></i>
+            </a>
+            <a href="#" class="text-pink-600 hover:text-pink-700">
+              <i class="fab fa-instagram fa-lg"></i>
+            </a>
+            <a
+              href="https://github.com/SurajMandal14/LiveTranslationApp"
+              class="text-gray-800 hover:text-black"
+            >
+              <i class="fab fa-github fa-lg"></i>
+            </a>
+          </div>
+
+          <h3 class="text-lg font-semibold mb-2">Location</h3>
+          <p>Mumbai, India</p>
+        </div>
+
+        <h3 class="text-lg font-semibold mb-2">Send us a message</h3>
+        <form class="space-y-4">
+          <div>
+            <label for="name" class="block text-sm font-medium text-gray-700"
+              >Name</label
+            >
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700"
+              >Email</label
+            >
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+          <div>
+            <label for="message" class="block text-sm font-medium text-gray-700"
+              >Message</label
+            >
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            ></textarea>
+          </div>
+          <div>
+            <button
+              type="button"
+              class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            >
+              Send Message
+            </button>
+          </div>
+        </form>
       </div>
 
       <!-- Footer with copyright -->
-      <div class="footer">&copy; 2023 VoiceBridge | Built by Suraj Mandal</div>
+      <div class="footer">
+        <div class="mb-4 flex justify-center space-x-4">
+          <a href="#app" class="text-gray-600 hover:text-gray-900"
+            >Translator</a
+          >
+          <a href="#about" class="text-gray-600 hover:text-gray-900">About</a>
+          <a href="#privacy" class="text-gray-600 hover:text-gray-900"
+            >Privacy Policy</a
+          >
+          <a href="#contact" class="text-gray-600 hover:text-gray-900"
+            >Contact</a
+          >
+        </div>
+        &copy; 2024 VoiceBridge | Built by Suraj Mandal
+      </div>
     </div>
 
     <script>
@@ -1424,6 +1704,67 @@
         if (document.hidden && isRecording) {
           stopRecording();
         }
+      });
+
+      // Handle navigation
+      document.addEventListener("DOMContentLoaded", function () {
+        const navLinks = document.querySelectorAll(".nav-link");
+        const sections = document.querySelectorAll(
+          ".app-section, .about-section, .privacy-section, .contact-section"
+        );
+        const footerLinks = document.querySelectorAll(".footer a");
+
+        function showSection(sectionId) {
+          // Hide all sections
+          sections.forEach((section) => {
+            section.classList.remove("visible-section");
+          });
+
+          // Show the selected section
+          document.getElementById(sectionId).classList.add("visible-section");
+
+          // Update active nav link
+          navLinks.forEach((link) => {
+            if (link.getAttribute("data-section") === sectionId) {
+              link.classList.add("active");
+            } else {
+              link.classList.remove("active");
+            }
+          });
+        }
+
+        // Add click event listeners to nav links
+        navLinks.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const sectionId = this.getAttribute("data-section");
+            showSection(sectionId);
+            window.history.pushState(null, "", this.getAttribute("href"));
+          });
+        });
+
+        // Add click event listeners to footer links
+        footerLinks.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const href = this.getAttribute("href");
+            const sectionId = href.replace("#", "") + "-section";
+            showSection(sectionId);
+            window.history.pushState(null, "", href);
+          });
+        });
+
+        // Handle direct navigation via URL hash
+        function handleHashChange() {
+          const hash = window.location.hash || "#app";
+          const sectionId = hash.replace("#", "") + "-section";
+          showSection(sectionId);
+        }
+
+        window.addEventListener("hashchange", handleHashChange);
+
+        // Initial load
+        handleHashChange();
       });
     </script>
   </body>
