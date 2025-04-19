@@ -41,7 +41,7 @@ VoiceBridge is a web-based application that enables real-time voice translation 
    git clone https://github.com/SurajMandal14/LiveTranslationApp.git
    ```
 
-2. Open `trans.html` in your web browser.
+2. Open `index.html` or `trans.html` in your web browser.
 
 That's it! No build process or additional dependencies are required.
 
@@ -76,6 +76,16 @@ This application works best in modern browsers that support the Web Speech API:
 
 This project is open-source and available under the MIT License.
 
-## Credits
+## Developer
 
-Developed by Suraj Mandal
+Developed by Suraj Mandal from Janakpurdham, Nepal.
+
+## Connect With Me
+
+- [GitHub](https://github.com/SurajMandal14)
+- [Facebook](https://www.facebook.com/profile.php?id=100010812571636)
+- [Instagram](https://www.instagram.com/_surajzmandal/)
+
+## Contact
+
+For any questions or suggestions, reach out to me at mandalsuraj048@gmail.com.
