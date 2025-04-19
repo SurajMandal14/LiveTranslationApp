@@ -4,12 +4,48 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="google-adsense-account" content="ca-pub-6124600354172819" />
-    <title>VoiceBridge - Real-Time Voice Translator</title>
+    <title>VoiceBridge – Real-Time Voice Translator</title>
+    <meta
+      name="description"
+      content="VoiceBridge enables seamless real-time voice translation across multiple languages including Telugu, Hindi, and English."
+    />
+    <meta
+      name="keywords"
+      content="voice translator, real-time translation, Telugu to Hindi translator, multilingual voice app"
+    />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Social Media -->
+    <meta
+      property="og:title"
+      content="VoiceBridge – Real-Time Voice Translator"
+    />
+    <meta
+      property="og:description"
+      content="Experience seamless real-time voice translation with VoiceBridge."
+    />
+    <meta
+      property="og:url"
+      content="https://live-translation-app.vercel.app/"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="VoiceBridge" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎤</text></svg>"
+    />
+
     <script
       async
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6124600354172819"
       crossorigin="anonymous"
     ></script>
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
@@ -22,6 +58,10 @@
       body {
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         background-color: #f8f9fa;
+        scroll-behavior: smooth;
+      }
+      html {
+        scroll-behavior: smooth;
       }
       .container {
         max-width: 600px;
@@ -247,6 +287,14 @@
         margin-bottom: 15px;
         gap: 15px;
         flex-wrap: wrap;
+        position: sticky;
+        top: 0;
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(5px);
+        z-index: 10;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        border-radius: 0 0 15px 15px;
+        padding: 15px 0;
       }
       .nav-link {
         color: #4285f4;
@@ -288,33 +336,90 @@
         margin-bottom: 15px;
         line-height: 1.6;
       }
+      .email-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        color: #666;
+        margin-top: 10px;
+        font-size: 14px;
+        transition: all 0.2s ease;
+      }
+      .email-link:hover {
+        color: #4285f4;
+      }
+      .section-transition {
+        transition: all 0.4s ease-in-out;
+      }
     </style>
+
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "VoiceBridge",
+        "description": "Real-time voice translation app that supports multiple languages including Telugu, Hindi, English, and more",
+        "applicationCategory": "CommunicationApplication",
+        "operatingSystem": "Web",
+        "author": {
+          "@type": "Person",
+          "name": "Suraj Mandal",
+          "email": "mandalsuraj048@gmail.com"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "availableLanguage": [
+          "Telugu",
+          "Hindi",
+          "English",
+          "Tamil",
+          "Kannada",
+          "French",
+          "Spanish",
+          "German",
+          "Japanese",
+          "Chinese"
+        ]
+      }
+    </script>
   </head>
   <body class="py-6">
     <div class="container mx-auto px-4">
       <!-- Header -->
       <h1
-        class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-6 md:mb-10"
+        class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-6 md:mb-6"
+        data-aos="fade-down"
       >
         VoiceBridge
       </h1>
 
       <!-- Navigation Menu -->
-      <div class="nav-menu">
+      <div class="nav-menu" data-aos="fade" data-aos-delay="200">
         <a href="#app" class="nav-link active" data-section="app-section"
-          >Translator</a
+          ><i class="fas fa-language mr-1"></i> Translator</a
         >
-        <a href="#about" class="nav-link" data-section="about-section">About</a>
+        <a href="#about" class="nav-link" data-section="about-section"
+          ><i class="fas fa-info-circle mr-1"></i> About</a
+        >
         <a href="#privacy" class="nav-link" data-section="privacy-section"
-          >Privacy Policy</a
+          ><i class="fas fa-shield-alt mr-1"></i> Privacy</a
         >
         <a href="#contact" class="nav-link" data-section="contact-section"
-          >Contact</a
+          ><i class="fas fa-envelope mr-1"></i> Contact</a
         >
       </div>
 
       <!-- Main App Section -->
-      <div id="app-section" class="app-section visible-section">
+      <div
+        id="app-section"
+        class="app-section visible-section section-transition"
+        data-aos="fade-up"
+        data-aos-delay="300"
+      >
         <!-- Google AdSense Ad Unit -->
         <div class="mb-8 text-center">
           <script
@@ -533,22 +638,51 @@
       </div>
 
       <!-- About Section -->
-      <div id="about-section" class="about-section">
-        <h2 class="content-heading">About VoiceBridge</h2>
-        <p class="content-text">
+      <div id="about-section" class="about-section section-transition">
+        <h2 class="content-heading" data-aos="fade-up">About VoiceBridge</h2>
+        <p class="content-text" data-aos="fade-up" data-aos-delay="100">
           VoiceBridge is a real-time voice translation tool designed to break
           down language barriers and facilitate communication across different
           languages. Our mission is to make global communication seamless and
           accessible to everyone.
         </p>
-        <p class="content-text">
+        <p class="content-text" data-aos="fade-up" data-aos-delay="150">
           With support for 10 languages including Telugu, Hindi, English, Tamil,
           Kannada, French, Spanish, German, Japanese, and Chinese, VoiceBridge
           helps you connect with people around the world without language
           limitations.
         </p>
-        <h3 class="text-xl font-semibold mb-3 mt-6">How It Works</h3>
-        <ol class="list-decimal pl-5 mb-6 space-y-2">
+
+        <div data-aos="fade-up" data-aos-delay="200">
+          <h3 class="text-xl font-semibold mb-3 mt-6">About The Developer</h3>
+          <p class="content-text">
+            Hi, I'm Suraj Mandal, a passionate developer based in Janakpurdham,
+            Nepal. I created VoiceBridge to help break language barriers and
+            make communication more accessible to everyone around the world.
+          </p>
+          <p class="content-text">
+            Feel free to reach out to me at
+            <a
+              href="mailto:mandalsuraj048@gmail.com"
+              class="text-blue-500 hover:underline"
+              >mandalsuraj048@gmail.com</a
+            >
+            for any questions, suggestions, or collaboration opportunities.
+          </p>
+        </div>
+
+        <h3
+          class="text-xl font-semibold mb-3 mt-6"
+          data-aos="fade-up"
+          data-aos-delay="250"
+        >
+          How It Works
+        </h3>
+        <ol
+          class="list-decimal pl-5 mb-6 space-y-2"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
           <li>
             Select your source and target languages from the dropdown menus
           </li>
@@ -664,17 +798,23 @@
 
           <h3 class="text-lg font-semibold mb-2">Social Media</h3>
           <div class="flex gap-4 mb-4">
-            <a href="#" class="text-blue-600 hover:text-blue-800">
-              <i class="fab fa-twitter fa-lg"></i>
-            </a>
-            <a href="#" class="text-blue-800 hover:text-blue-900">
+            <a
+              href="https://www.facebook.com/profile.php?id=100010812571636"
+              target="_blank"
+              class="text-blue-800 hover:text-blue-900"
+            >
               <i class="fab fa-facebook-f fa-lg"></i>
             </a>
-            <a href="#" class="text-pink-600 hover:text-pink-700">
+            <a
+              href="https://www.instagram.com/_surajzmandal/"
+              target="_blank"
+              class="text-pink-600 hover:text-pink-700"
+            >
               <i class="fab fa-instagram fa-lg"></i>
             </a>
             <a
-              href="https://github.com/SurajMandal14/LiveTranslationApp"
+              href="https://github.com/SurajMandal14"
+              target="_blank"
               class="text-gray-800 hover:text-black"
             >
               <i class="fab fa-github fa-lg"></i>
@@ -682,11 +822,11 @@
           </div>
 
           <h3 class="text-lg font-semibold mb-2">Location</h3>
-          <p>Mumbai, India</p>
+          <p>Janakpurdham, Nepal</p>
         </div>
 
         <h3 class="text-lg font-semibold mb-2">Send us a message</h3>
-        <form class="space-y-4">
+        <form class="space-y-4" id="contactForm">
           <div>
             <label for="name" class="block text-sm font-medium text-gray-700"
               >Name</label
@@ -695,6 +835,7 @@
               type="text"
               id="name"
               name="name"
+              required
               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
@@ -706,6 +847,7 @@
               type="email"
               id="email"
               name="email"
+              required
               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
@@ -717,12 +859,13 @@
               id="message"
               name="message"
               rows="4"
+              required
               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             ></textarea>
           </div>
           <div>
             <button
-              type="button"
+              type="submit"
               class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             >
               Send Message
@@ -732,7 +875,7 @@
       </div>
 
       <!-- Footer with copyright -->
-      <div class="footer">
+      <div class="footer" data-aos="fade-up">
         <div class="mb-4 flex justify-center space-x-4">
           <a href="#app" class="text-gray-600 hover:text-gray-900"
             >Translator</a
@@ -745,11 +888,28 @@
             >Contact</a
           >
         </div>
+        <div class="text-center">
+          <a href="mailto:mandalsuraj048@gmail.com" class="email-link mb-2">
+            <i class="fas fa-envelope"></i> mandalsuraj048@gmail.com
+          </a>
+        </div>
         &copy; 2024 VoiceBridge | Built by Suraj Mandal
       </div>
     </div>
 
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <script>
+      // Initialize AOS animations
+      document.addEventListener("DOMContentLoaded", function () {
+        AOS.init({
+          duration: 800,
+          once: false,
+          mirror: true,
+        });
+      });
+
       // DOM Elements
       const micButton = document.getElementById("micButton");
       const playButton = document.getElementById("playButton");
@@ -1721,7 +1881,23 @@
           });
 
           // Show the selected section
-          document.getElementById(sectionId).classList.add("visible-section");
+          const targetSection = document.getElementById(sectionId);
+          targetSection.classList.add("visible-section");
+
+          // Refresh animations in the section
+          AOS.refresh();
+
+          // Smooth scroll to the specific section
+          const yOffset = -60; // Adjust this value as needed for offset
+          const targetPosition =
+            targetSection.getBoundingClientRect().top +
+            window.pageYOffset +
+            yOffset;
+
+          window.scrollTo({
+            top: targetPosition,
+            behavior: "smooth",
+          });
 
           // Update active nav link
           navLinks.forEach((link) => {
@@ -1765,7 +1941,42 @@
 
         // Initial load
         handleHashChange();
+
+        // Handle contact form submission
+        const contactForm = document.getElementById("contactForm");
+        if (contactForm) {
+          contactForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
+
+            // Create mailto link with form data
+            const mailtoLink = `mailto:mandalsuraj048@gmail.com?subject=VoiceBridge Contact from ${name}&body=${encodeURIComponent(
+              "Name: " + name + "\nEmail: " + email + "\n\nMessage:\n" + message
+            )}`;
+
+            // Open default email client
+            window.location.href = mailtoLink;
+
+            // Optional: Reset form after submission
+            contactForm.reset();
+          });
+        }
       });
+    </script>
+
+    <!-- Additional script for robots.txt verification -->
+    <script>
+      // This creates a virtual robots.txt for search engines
+      if (window.location.pathname === "/robots.txt") {
+        document.documentElement.innerHTML = `
+          User-agent: *
+          Allow: /
+          Sitemap: https://live-translation-app.vercel.app/sitemap.xml
+        `;
+        document.contentType = "text/plain";
+      }
     </script>
   </body>
 </html>
