@@ -1171,6 +1171,10 @@
         const sourceLang = sourceLanguage.textContent.trim();
         const targetLang = targetLanguage.textContent.trim();
 
+        console.log(
+          `Starting translation from ${sourceLang} to ${targetLang}: "${text}"`
+        );
+
         try {
           // Get language codes for the API
           const sourceCode = languageCodes.translation[sourceLang] || "te";
@@ -1247,7 +1251,9 @@
           // ===============================================================
 
           try {
-            const libreTranslateUrl = "https://libretranslate.com/translate";
+            // Use a more reliable LibreTranslate instance
+            const libreTranslateUrl =
+              "https://translate.argosopentech.com/translate";
             // Note: Some instances may require an API key or have rate limits
 
             const response = await fetch(libreTranslateUrl, {
@@ -1299,10 +1305,17 @@
               text
             )}&langpair=${sourceCode}|${targetCode}`;
 
+            console.log(
+              "Attempting MyMemory translation with URL:",
+              myMemoryUrl
+            );
+
             const response = await fetch(myMemoryUrl);
 
             if (response.ok) {
               const data = await response.json();
+              console.log("MyMemory API response:", data);
+
               if (
                 data &&
                 data.responseData &&
@@ -1323,7 +1336,15 @@
                 addToHistory(text, translatedText, sourceLang, targetLang);
 
                 return; // Exit early if API call was successful
+              } else {
+                console.error("MyMemory API returned unexpected format:", data);
               }
+            } else {
+              console.error(
+                "MyMemory API response was not OK:",
+                response.status,
+                response.statusText
+              );
             }
 
             // If we get here, the API call failed, fall through to fallback
@@ -1457,6 +1478,15 @@
           showError(
             "Translation error: " + (error.message || "Failed to fetch")
           );
+
+          // Even if there's an error, show something to the user
+          currentTranslation = `[Translation failed, but here's the text you said: ${text}]`;
+          translationText.textContent = currentTranslation;
+          translationText.classList.remove("hidden");
+
+          // Enable play button
+          playButton.classList.remove("disabled");
+          playButton.disabled = false;
         } finally {
           isTranslating = false;
           translatingIndicator.classList.add("hidden");
