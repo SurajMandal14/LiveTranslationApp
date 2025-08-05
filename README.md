@@ -143,6 +143,22 @@ The application is designed to work with several translation APIs:
 
 To use Google Translate API, replace "YOUR_RAPIDAPI_KEY" in the code with your actual RapidAPI key.
 
+## API Endpoints Used
+
+The application calls the following external API endpoints for translation:
+
+1.  **Google Translate (via RapidAPI)**
+    *   **Method:** `POST`
+    *   **Endpoint:** `https://google-translate1.p.rapidapi.com/language/translate/v2`
+
+2.  **LibreTranslate**
+    *   **Method:** `POST`
+    *   **Endpoint:** `https://translate.argosopentech.com/translate`
+
+3.  **MyMemory**
+    *   **Method:** `GET`
+    *   **Endpoint:** `https://api.mymemory.translated.net/get`
+
 ## Browser Compatibility
 
 This application works best in modern browsers that support the Web Speech API:
